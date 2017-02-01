@@ -6,7 +6,8 @@ import {
   View,
   TouchableHighlight,
   TextInput,
-  Image
+  Image,
+  Button
 } from 'react-native';
 
 class Login extends Component {
@@ -33,11 +34,14 @@ class Login extends Component {
           style={styles.input}
           placeholder="Password">
         </TextInput>
-        <TouchableHighlight>
-          <Text style={styles.buttonText}>
-            Login
-          </Text>
-        </TouchableHighlight>
+
+        <View style={{marginTop: 51}}>
+          <Button
+            onPress={() => { }}
+            title="Login"
+            color="#fff"
+          />
+        </View>
 
       </View>
     );
@@ -67,7 +71,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: '#48BBEC',
     alignSelf: 'stretch',
-    marginTop: 10,
+    marginTop: 20,
     justifyContent: 'center'
   },
   buttonText: {
