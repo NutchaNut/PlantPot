@@ -11,9 +11,10 @@ import {
 } from 'react-native';
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { text: 'User' };
+
+  state = {
+    email: '',
+    password: ''
   }
 
   render() {
@@ -25,14 +26,19 @@ class Login extends Component {
         <Text style={styles.heading}>
           PlantPot
         </Text>
+
         <TextInput
+          value={this.state.email}
           onChangeText={ (text)=> this.setState({email: text}) }
-          style={styles.input} placeholder="Email">
+          style={styles.input} 
+          placeholder="email">
         </TextInput>
+
         <TextInput
+          value={this.state.password}
           onChangeText={ (text)=> this.setState({password: text}) }
           style={styles.input}
-          placeholder="Password">
+          placeholder="password">
         </TextInput>
 
         <View style={{marginTop: 51}}>
