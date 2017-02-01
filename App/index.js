@@ -8,6 +8,7 @@ import {
   Navigator
 } from 'react-native';
 
+import Login from './Login'
 import First from './First'
 import Second from './Second'
 
@@ -16,7 +17,7 @@ const NavigationBar = ({AddRoute, MoreDetailRoute, onSendPress}) => {
 		<Navigator.NavigationBar
     	routeMapper={{
      		LeftButton: (route, navigator, index, navState) => {
-			    if (route.pathname !== 'main') {
+			    if (route.pathname !== 'main' && route.pathname !== 'login') {
 			      return (
 			        <TouchableHighlight
 			        	style={styles.backBtn}
@@ -84,30 +85,22 @@ export default class PlantPot3 extends Component {
 
   _renderScene = (route, navigator, routes) => {
   switch (route.pathname) {
-    case 'main':
+    case 'login':
       return (
-        <First
-          //onPressImage={(passProps) => {this.handleOnPressImage(routes[1], navigator, passProps)}}
-          //insects={this.state.insects}
+        <Login
+
           />
       )
+      case 'main':
+        return (
+          <First
+
+            />
+        )
     case 'detail':
       return (
         <Second
-           name={route.props.name}
-      //     timeToHavest={route.props.timeToHavest}
-      //     maxTimeToHavest={route.props.maxTimeToHavest}
-      //
-      //     temperatureStatus={route.props.temperatureStatus}
-      //     maxTemperatureStatus={route.props.maxTemperatureStatus}
-      //
-      //     lightStatus={route.props.lightStatus}
-      //     maxLightStatus={route.props.maxLightStatus}
-      //
-      //     waterStatus={route.props.waterStatus}
-      //     maxWaterStatus={route.props.maxWaterStatus}
-      //
-           url={route.props.url}
+
       />
     )
   }
@@ -115,8 +108,9 @@ export default class PlantPot3 extends Component {
 
   render() {
     const routes = [
-    	{title: 'Plant Pot', pathname: 'main', index: 0, props: { }},
-    	{title: 'Second', pathname: 'detail', index: 1, props: { }},
+      {title: ' ', pathname: 'login', index: 0, props: { }},
+    	{title: 'Plant Pot', pathname: 'main', index: 1, props: { }},
+    	{title: 'Second', pathname: 'detail', index: 2, props: { }},
 		]
 
 	  return (
