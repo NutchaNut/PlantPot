@@ -17,6 +17,10 @@ class Login extends Component {
     password: ''
   }
 
+  login = () => {
+    console.log('loging in ...', this.state)
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -43,7 +47,7 @@ class Login extends Component {
 
         <View style={{marginTop: 51}}>
           <Button
-            onPress={() => { }}
+            onPress={this.login}
             title="Login"
             color="#fff"
           />
