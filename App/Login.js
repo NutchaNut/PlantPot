@@ -10,6 +10,8 @@ import {
   Button
 } from 'react-native';
 
+import First from './First'
+
 export default class Login extends Component {
 
   state = {
@@ -18,6 +20,20 @@ export default class Login extends Component {
   }
 
   login = () => {
+    // const { email, password } = this.state
+    const email = this.state.email
+    const password = this.state.password
+
+    // if (email === 'nutcha@cmu' && password === 'password') {
+    if (true) {
+      // Login successfuly, do something...
+      this.props.navigator.push({
+        title: 'Home',
+        component: First,
+        navigationBarHidden: false
+      })
+    }
+
     console.log('loging in ...', this.state)
   }
 
