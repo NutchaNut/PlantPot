@@ -10,7 +10,7 @@ import {
   Button
 } from 'react-native';
 
-class Login extends Component {
+export default class Login extends Component {
 
   state = {
     email: '',
@@ -25,8 +25,9 @@ class Login extends Component {
     return (
       <View style={styles.container}>
         <Image
-        style = {styles.imagePlant}
-        source = {require('./img/lettuce.png')} />
+          style={styles.imagePlant}
+          source={require('./img/lettuce.png')} 
+        />
         <Text style={styles.heading}>
           PlantPot
         </Text>
@@ -107,4 +108,4 @@ const styles = StyleSheet.create({
 
 });
 
-module.exports = Login;
+// module.exports = Login;
