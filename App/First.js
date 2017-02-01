@@ -1,57 +1,78 @@
-import React, { Component } from 'react';
+import React, { Component,PropTypes } from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
   View,
-  TouchableHighLight
+  TouchableHighLight,
+  Image
 } from 'react-native';
 
 class First extends Component {
 
-  onButtonPress(){
-    this.props.navigator.push({
-      id : 'Second'
-    });
-  }
-
-
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-            First page
-        </Text>
-        <TouchableHighLight onPress={this.onButtonPress.bind(this)}>
-          <Text style={styles.instructions}>
-              this is button
-          </Text>
-        </TouchableHighLight>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
+      <View style = {styles.container}>
+        <View style = {styles.header}>
+          <Image
+          style = {styles.profile}
+          source = {require('./img/carrot.png')}/>
+          <Text style = {styles.labelHeader}> Malin J </Text>
+        </View>
+        <View style = {styles.body}>
+          <View style = {styles.column}>
+          <Image
+            style = {styles.imagePlant}
+            source = {require('./img/lettuce.png')} />
+          <Text style = {styles.labelPlantName}> Hello </Text>
+          </View>
+        </View>
       </View>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
+  container :{
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  welcome: {
+  header :{
+    flex: 2,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    backgroundColor: '#A7DBD8',
+  },
+  body: {
+    flex: 6,
+    backgroundColor: '#DCF7F3',
+  },
+  profile : {
+    marginTop : 25,
+    marginLeft : 25,
+    width : 100,
+    height : 100,
+  },
+  labelHeader :{
+    marginTop : 30,
+    marginLeft : 30,
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    fontWeight: '100',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  imagePlant :{
+    marginTop : 25,
+    marginLeft : 25,
+    width : 80,
+    height : 80,
+  },
+  column: {
+		flex: 1,
+    flexDirection: 'column',
+    alignItems: 'stretch',
+  },
+  labelPlantName :{
+    fontSize: 20,
+    fontWeight: '100',
+    marginLeft : 40,
   },
 });
 

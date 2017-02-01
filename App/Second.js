@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
 	largeText:{
 		flex : 1,
 		fontSize : 52,
-		fontFamily : "HelveticaNeue-CondenseBold",
 		paddingTop : 40,
 		paddingRight : 20,
 		paddingLeft : 20,
