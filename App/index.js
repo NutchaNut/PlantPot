@@ -22,7 +22,9 @@ export default class PlantPot3 extends Component {
           title: 'Login',
           navigationBarHidden: true
         }}
-        style={{flex: 1}}
+        style={{flex :1}}
+        barTintColor='#69D2E7'
+        titleTextColor='#fff'
 			/>
 		)
 	}
@@ -30,27 +32,7 @@ export default class PlantPot3 extends Component {
 }
 
 const styles = StyleSheet.create({
-  title: {
-		color:'#fff',
-    textAlign:'center',
-    fontWeight:'bold',
-    flex: 1,
-    marginTop: 6,
-    fontSize: 16
-	},
-	textBtn: {
-		color: '#fff',
-		fontSize: 24,
-		marginLeft: 6,
-	},
-  container: {
-		backgroundColor:'#69D2E7',
-		height: 60
-  },
-  backBtn: {
-  	width: 50,
-  	height: 50
-  }
+
 });
 
 
