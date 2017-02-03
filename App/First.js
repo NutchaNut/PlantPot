@@ -7,11 +7,36 @@ import {
   TouchableHighLight,
   Image,
   ScrollView,
-  PanResponder
+  Switch
 } from 'react-native';
 
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import Button from 'apsl-react-native-button';
+import Slider from 'react-native-slider';
+
 import config from './config';
+
+class ColorSwitchExample extends React.Component {
+  state = {
+    colorTrueSwitchIsOn: true,
+    colorFalseSwitchIsOn: false,
+  };
+
+  render() {
+    return (
+      <View>
+        <Switch
+          onValueChange={(value) => this.setState({colorFalseSwitchIsOn: value})}
+          onTintColor="#FCE18B"
+          style={{marginBottom: 10}}
+          thumbTintColor="#FC9A66"
+          tintColor="#FC9A66"
+          value={this.state.colorFalseSwitchIsOn}
+        />
+      </View>
+    );
+  }
+}
 
 class First extends Component {
 
@@ -118,6 +143,7 @@ class First extends Component {
             lightlevel: 0,
             soilHumid :0,
             waterStatus: 'OFF',
+            value : 5,
         }
     }
 
@@ -150,7 +176,8 @@ class First extends Component {
             <Image
               style = {styles.imagePlant}
               source = {require('./img/gardening.png')} />
-
+        </View>
+        <View style = {styles.monitor}>
               <View style ={styles.row}>
                 <Image
                   style = {styles.icon}
@@ -189,11 +216,33 @@ class First extends Component {
                   {
                     (fillLight) => (
                       <Text style={styles.points}>
-                        {this.state.soilHumid} %
+                        {this.state.lightlevel}
                       </Text>
                     )
                   }
                 </AnimatedCircularProgress>
+              </View>
+              <View style ={styles.row}>
+                <View style ={styles.column}>
+                  <Slider
+                    trackStyle={customStyles4.track}
+                    thumbStyle={customStyles4.thumb}
+                    minimumTrackTintColor='#FFD8D8'
+                    minimumValue={0}
+                    maximumValue={10}
+                    value={this.state.value}
+                    //onValueChange={(value) => this.setState({value})} />
+                  />
+                <Button
+                  style={styles.waterBtn}
+                  textStyle={styles.labelBtn}>
+                  GIVE WATER
+                </Button>
+                </View>
+                <View style = {styles.column}>
+                  <ColorSwitchExample />
+                  <Text style = {styles.labelIcon}> GIVE LIGHT </Text>
+                </View>
               </View>
           </View>
         </View>
@@ -212,12 +261,12 @@ const styles = StyleSheet.create({
     flex: 2,
     flexDirection: 'row',
     alignItems: 'flex-start',
-    backgroundColor: '#DCF7F3',
+    backgroundColor: '#DAEDFB',
     //marginTop : 45,
   },
   body: {
     flex: 6,
-    backgroundColor: '#A7DBD8',
+    backgroundColor: '#DAFBF8',
   },
   profile : {
     marginTop : 15,
@@ -234,6 +283,7 @@ const styles = StyleSheet.create({
   },
   imagePlant :{
     marginTop : 25,
+    marginBottom : 25,
     width : 200,
     height : 200,
   },
@@ -290,14 +340,59 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     position: 'absolute',
     top: 33,
-    left: 15,
+    left: 10,
     width: 90,
     textAlign: 'center',
     color: '#7591af',
     fontSize: 30,
     fontWeight: "100"
   },
+  column:{
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft : 20,
+    marginRight : 20,
+  },
+  waterBtn:{
+    backgroundColor: '#FC9D9A',
+    borderColor :'#F9CDAD',
+    width: 120,
+    height: 40
+  },
+  labelBtn:{
+    fontSize: 18,
+    color : '#fff'
+  },
+  monitor :{
+    backgroundColor: '#DAEDFB',
+  },
 
+});
+
+const customStyles4 = StyleSheet.create({
+  track: {
+    width : 130,
+    height: 10,
+    borderRadius: 4,
+    backgroundColor: '#E8E8E8',
+    shadowColor: 'black',
+    shadowOffset: {width: 0, height: 1},
+    shadowRadius: 1,
+    shadowOpacity: 0.15,
+  },
+  thumb: {
+    width: 20,
+   height: 20,
+   backgroundColor: '#f8a1d6',
+   borderColor: '#a4126e',
+   borderWidth: 5,
+   borderRadius: 10,
+   shadowColor: 'black',
+   shadowOffset: {width: 0, height: 2},
+   shadowRadius: 2,
+   shadowOpacity: 0.35,
+  }
 });
 
 module.exports = First;
