@@ -1,7 +1,7 @@
 const config = {
-  appId: 'Plant2',
-  appKey: 'C3x0k8GgFykjSRr',
-  appSecret: '6Yik9vgQc46jnkIAwCMPRVa6E',
+  appId: 'PlantPot2',
+  appKey: 'Y35OK6MFGX5TQm1',
+  appSecret: 'eIjiYDLmUhznX6xMPVCLsVGRg',
   topic: 'sensor',
 }
 

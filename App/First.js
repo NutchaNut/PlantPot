@@ -7,7 +7,7 @@ import {
   TouchableHighLight,
   Image,
   ScrollView,
-  Switch
+  Switch,
 } from 'react-native';
 
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
@@ -52,6 +52,7 @@ class First extends Component {
         const urlHumid = `https://api.netpie.io/topic/${config.appId}/${topic}/Humidity?${auth}`;
         const urlLight = `https://api.netpie.io/topic/${config.appId}/${topic}/LightLevel?${auth}`;
         const urlWater = `https://api.netpie.io/topic/${config.appId}/${topic}/WaterController?${auth}`;
+        const urlSoil = `https://api.netpie.io/topic/${config.appId}/${topic}/SoilLevel?${auth}`;
 
         // Promise
         //fetch('https://api.netpie.io/topic/Plant2/sensor/Temperature?auth=C3x0k8GgFykjSRr:6Yik9vgQc46jnkIAwCMPRVa6E')
@@ -108,11 +109,24 @@ class First extends Component {
             })
         })
 
+        fetch(urlSoil)
+        .then((response) =>{
+            return response.json()
+        })
+        .then((responseJson) =>{
+            console.log('recieveSoil', responseJson)
+            const lightlevel = responseJson[0].payload;
+            console.log('SoilLevel', soilHumid)
+            this.setState({
+                lightlevel
+            })
+        })
+
     }
 
     functionDetectON() {
         const auth = `auth=${config.appKey}:${config.appSecret}`
-        const urlWater = `https://api.netpie.io/microgear/${config.appId}/plug?${auth}`;
+        const urlWater = `https://api.netpie.io/microgear/${config.appId}/sensor?${auth}`;
 
         fetch(urlWater,
             {
@@ -125,7 +139,7 @@ class First extends Component {
 
     functionDetectOFF() {
         const auth = `auth=${config.appKey}:${config.appSecret}`
-        const urlWater = `https://api.netpie.io/microgear/${config.appId}/plug?${auth}`;
+        const urlWater = `https://api.netpie.io/microgear/${config.appId}/sensor?${auth}`;
 
         fetch(urlWater,
             {
@@ -134,6 +148,18 @@ class First extends Component {
             }
         );
     } // End functionDetectOFF
+
+    functionGiveWater(){
+      const auth = `auth=${config.appKey}:${config.appSecret}`
+      const urlWater = `https://api.netpie.io/microgear/${config.appId}/sensor?${auth}`;
+
+      fetch(urlWater,
+          {
+              method: 'PUT', // Use method PUT for send data.
+              body: 'ONWater' // Change your messages send to netpie.
+          }
+      );
+    }
 
   constructor(props) {
         super(props);
@@ -235,7 +261,8 @@ class First extends Component {
                   />
                 <Button
                   style={styles.waterBtn}
-                  textStyle={styles.labelBtn}>
+                  textStyle={styles.labelBtn}
+                  onPress={this.functionGiveWater.bind(this)}>
                   GIVE WATER
                 </Button>
                 </View>
