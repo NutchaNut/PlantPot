@@ -20,13 +20,39 @@ class ColorSwitchExample extends React.Component {
   state = {
     colorTrueSwitchIsOn: true,
     colorFalseSwitchIsOn: false,
+    lightTriger : 0,
   };
+
+  turnONlight(){
+    const auth = `auth=${config.appKey}:${config.appSecret}`
+    const urlSwitchLight = `https://api.netpie.io/microgear/${config.appId}/sensor?${auth}`;
+
+    if(this.state.lightTriger % 2 == 0){
+      fetch(urlSwitchLight,
+          {
+              method: 'PUT', // Use method PUT for send data.
+              body: 'ONLight' // Change your messages send to netpie.
+          }
+      );
+    }
+    else {
+      fetch(urlSwitchLight,
+          {
+              method: 'PUT', // Use method PUT for send data.
+              body: 'OFFLight' // Change your messages send to netpie.
+          }
+      );
+    }
+
+  }
 
   render() {
     return (
       <View>
         <Switch
-          onValueChange={(value) => this.setState({colorFalseSwitchIsOn: value})}
+          onValueChange={(value) =>
+            this.setState({colorFalseSwitchIsOn: value,lightTriger:this.state.lightTriger + 1}
+              ,this.turnONlight())}
           onTintColor="#FCE18B"
           style={{marginBottom: 10}}
           thumbTintColor="#FC9A66"
